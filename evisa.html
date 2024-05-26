@@ -25,6 +25,7 @@
   display: none;
 }
 
+
 .prev, .next {
   position: absolute;
   top: 50%;
@@ -124,6 +125,12 @@ line-height: 45px;
 transition: .3s;
 color: #000;
 }
+ .social-icon ul li .fa-envelope{
+font-size: 25px;
+line-height: 45px;
+transition: .3s;
+color: #000;
+}
 .social-icon ul li a:hover{
   color: #000;
 }
@@ -152,6 +159,61 @@ color: #000;
 }
 .social-icon ul li:nth-child(4) a:hover{
   background-color: rgb(247, 17, 240);
+}
+@media (max-width: 1200px) {
+  .content {
+    padding: 15px;
+  }
+  .myslide img{
+    background-size: cover;
+  }
+}
+
+@media (max-width: 992px) {
+  .content {
+    padding: 10px;
+  }
+  .myslide img{
+    background-size: cover;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 8px;
+  }
+  .myslide img{
+    background-size: cover;
+  }
+
+  .menu-icon {
+    top: 10px;
+    left: 10px;
+  }
+
+  .bar {
+    width: 25px;
+    height: 2.5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content {
+    padding: 5px;
+  }
+  .myslide img{
+    background-size: cover;
+  }
+
+  .menu-icon {
+    top: 5px;
+    left: 5px;
+  }
+
+  .bar {
+    width: 20px;
+    height: 2px;
+  }
 }
 
   </style>
@@ -243,16 +305,10 @@ color: #000;
       <li><a href=""><i class="fa-brands fa-x-twitter"></i></a></li>
        <li><a href=""><i class="fa-brands fa-whatsapp"></i></a></li>
       <li><a href=""> <i class="fa-brands fa-facebook-f"></i></a></li>
-      <li><a href=""> <i class="fa-brands fa-instagram"></i></a></li>
+      <li><a href="admin@travel-alba.org"> <i class="fa fa-envelope" aria-hidden="true"></i></a></li>
     </ul>
     </div>
     <div>
-    <a href="http://gmail.com/haythammukalazi@gmail.com"><p>Made by Haytham Jr</p></a>
-  </div>
-  <div>
-    <ul>
-      <li><a href="about.html">ABOUT</a></li>
-    </ul>
   </div>
   </footer>
 <script>
