@@ -6,10 +6,10 @@
   <title>E-Visa Checkup - Albania Travel State Dept</title>
    <link rel="icon" href="alb7.jpg" type="image/png">
 
-   <meta name="description" content="Check the eVisa status for Albania through the official state department website. Get updates and information on your visa application and visa check.">
-  <meta name="keywords" content="eVisa, Albania, visa status, Albania visa, Albania state department, visa check, evisa check, Albania Evisa, evisa Albania, visa typeD">
-  <meta name="author" content="Albania Travel Agency">
-  <meta property="og:title" content="Evisa Check Albania State Dept">
+  <meta name="description" content="Check the eVisa status for Albania through the official state department website. Get updates and information on your visa application and visa check.">
+  <meta name="keywords" content="eVisa, Albania, visa status, Albania visa, Albania state department, visa check, evisa check, Evisa Checkup, Albania Evisa, evisa Albania, e-visa types, Evisa Checkup - Albania State Dept">
+  <meta name="author" content="Haytham10Jr">
+  <meta property="og:title" content="Evisa Checkup - Albania State Dept">
   <meta property="og:description" content="Check the eVisa status for Albania through the official state department website. Get updates and information on your visa application.">
   <meta property="og:url" content="https://travel-alba.org">
   <meta name="twitter:card" content="summary_large_image">
@@ -203,7 +203,26 @@ color: #000;
 .social-icon ul li:nth-child(4) a:hover{
   background-color: rgb(247, 17, 240);
 }
+.message {
+  position: fixed;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: none;
+  transition: top 1s ease;
+}
 
+.message.valid {
+  background-color: #d4edda;
+  color: green;
+}
+
+.message.invalid {
+  background-color: #fff;
+  color: red;
+}
   </style>
 </head>
 <body>
@@ -263,27 +282,32 @@ color: #000;
   <div class="input-section">
     <h2>TRACK YOUR VISA</h2>
     <marquee><img src="bania.jpg" style="width: 60%; height: 60%; border-radius: 10%;"></marquee>
-     <table>
+      <form id="evisaForm">
+       <table>
         <tr>
-            <td>Passport Number:</td>
-            <td><input type="text" id="passportNumber"></td>
+          <td><label for="passportNumber">Passport Number:</label></td>
+          <td><input type="text" id="passportNumber" name="passportNumber" maxlength="9" required></td>
         </tr>
         <tr>
-            <td>Visa Number:</td>
-            <td><input type="text" id="visaNumber"></td>
+          <td><label for="visaNumber">Visa Number:</label></td>
+          <td><input type="text" id="visaNumber" name="visaNumber" maxlength="12" required></td>
         </tr>
         <tr>
-            <td>Current Country:</td>
-            <td><input type="text" id="currentCountry"></td>
+          <td><label for="currentCountry">Current Country:</label></td>
+          <td><input type="text" id="currentCountry" name="currentCountry"></td>
         </tr>
         <tr>
-            <td>Country:</td>
-            <td><input type="text" id="country"></td>
+          <td><label for="country">Country:</label></td>
+          <td><input type="text" id="country" name="country"></td>
         </tr>
-    </table>
-    <button onclick="validateData()">Submit</button>
-
+        <tr>
+          <td colspan="2"><button type="button" onclick="validateForm()">Submit</button></td>
+        </tr>
+      </table>
+    </form>
+    <div id="message" class="message"></div>
   </div>
+
 
   <!-- Modal -->
   <div id="myModal" class="modal">
@@ -338,18 +362,63 @@ color: #000;
       showSlides(slideIndex += n);
     }
 
-    function validateData() {
-            var passportNumber = document.getElementById("passportNumber").value;
-            var visaNumber = document.getElementById("visaNumber").value;
-            var currentCountry = document.getElementById("currentCountry").value;
-            var country = document.getElementById("country").value;
+   function validateForm() {
+  const passportNumber = document.getElementById('passportNumber').value;
+  const visaNumber = document.getElementById('visaNumber').value;
+  const currentCountry = document.getElementById('currentCountry').value;
+  const country = document.getElementById('country').value;
+  const messageDiv = document.getElementById('message');
 
-            if (visaNumber.startsWith("2200") && currentCountry.toLowerCase() === "uganda" && country.toLowerCase() === "albania") {
-                alert("Visa number is valid: " + visaNumber);
-            } else {
-                alert("Invalid data entered. Please check your inputs.");
-            }
-        }
+  let isValid = true;
+  let message = '';
+
+  // Validate Passport Number
+  const passportPattern = /^(A00|B00)[A-Za-z0-9]{6}$/;
+  if (!passportPattern.test(passportNumber)) {
+    isValid = false;
+    message = 'ERROR: Wrong Passport Number.';
+  }
+
+  // Validate Visa Number
+  const visaPattern = /^2200\d{8}$/;
+  if (!visaPattern.test(visaNumber)) {
+    isValid = false;
+    message = 'ERROR: Wrong Visa Number.';
+  }
+
+  // Validate Current Country
+  if (currentCountry !== 'Uganda') {
+    isValid = false;
+    message = 'ERROR: Wrong Current Country.';
+  }
+
+  // Validate Country
+  if (country !== 'Albania') {
+    isValid = false;
+    message = 'ERROR: Wrong Country input data.';
+  }
+
+  if (isValid) {
+    messageDiv.className = 'message valid';
+    message = `Your visa number ${visaNumber} is valid.`;
+  } else {
+    messageDiv.className = 'message invalid';
+  }
+
+  messageDiv.textContent = message;
+  messageDiv.style.display = 'block';
+  messageDiv.style.top = '70px';
+  messageDiv.style.height = '50px';
+  
+  // Hide the message after 3 seconds
+  setTimeout(() => {
+    messageDiv.style.top = '-50px';
+    setTimeout(() => {
+      messageDiv.style.display = 'none';
+    }, 500);
+  }, 3000);
+}
+
   </script>
 
 </body>
