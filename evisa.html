@@ -300,10 +300,7 @@ color: #000;
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
 
-  <!-- Video -->
  
-
-  <!-- User Data Input Section -->
   <div class="container">
   <div class="input-section">
     <h2>TRACK YOUR VISA</h2>
@@ -322,10 +319,7 @@ color: #000;
           <td><label for="visaNumber">Visa Number:</label></td>
           <td><input type="text" id="visaNumber" name="visaNumber"  maxlength="12" required></td>
         </tr>
-        <tr>
-          <td><label for="country">Country:</label></td>
-          <td><input type="text" id="country" name="country"></td>
-        </tr>
+        
         <tr>
           <td colspan="2"><button type="button" onclick="validateForm()">Submit</button></td>
         </tr>
@@ -385,22 +379,42 @@ color: #000;
   const passportNumber = document.getElementById('passportNumber').value;
   const nationality = document.getElementById('nationality').value.trim().toLowerCase();
   const visaNumber = document.getElementById('visaNumber').value;
-  const country = document.getElementById('country').value.trim().toLowerCase();
   const messageDiv = document.getElementById('message');
 
   const validPairs = {
-    'A00735964': '220043222221',
-    'A00286691': '220011426240',
-    'B00288416': '220025226663',
-    'B00056741': '220033324337',
-    'B00178668': '220043856365',
-    'A00606106': '220045527654',
-    'A00571786': '220057622399',
-    'B00051607': '220058233864',
-    'B00322036': '220077454366',
-    'A00735481': '220088834288',
-    'A01062750': '220086745334',
-    'A00834842': '220042363433'
+'B00075252': '220000610090',
+'A00880397': '220006416217',
+'B00241037': '220010887787',
+'A00630958': '220012175643',
+'B00358570': '220012212322',
+'A00787783':'220020299766',
+'B00115333' : '220022370099',
+'B00442836':' 220022521510',
+'A01021591': '220033232142 ',
+'B00152923': '220042444257 ',
+'A01022541': '220044044242',
+'B00447971': '220045661717 ',
+'A00795053': '220050353555 ',
+'A00782688': '220052641951', 
+'A00400144': '220053211988' ,
+'B00296821': '220056321888', 
+'A00576270': '220066600550', 
+'B00216358': '220071000687', 
+'A00129202' :'220077435401',
+'A00713681': '220081087300', 
+'B00089926': '220095092215',
+'A00761308': '220099095383' ,
+'B00364283': '220008432133' ,
+'B00493499': '220045661717',
+'B00341475': '220052453600' ,
+'A00936570' :'220084846174' ,
+'A01006811': '220008432133' ,
+'B00397135': '220018248387',
+'B00186200': '220020774499',
+'A00983698': '220030467532', 
+'B00073545': '220052453600',
+'B00170148': '220084846174',
+'A00817792': '220092084251'
   };
 
   let isValid = true;
@@ -419,11 +433,7 @@ color: #000;
   }
 
   // Validate Country
-  if (country !== 'albania') {
-    isValid = false;
-    message = 'User input error: Destination country should be Albania.';
-  }
-
+ 
   if (isValid) {
     messageDiv.className = 'message valid';
     message = `Your visa number ${visaNumber} is valid.`;
